@@ -1,0 +1,7 @@
+homepage: "https://www.revenueroll.com"
+documentation: "https://www.revenueroll.com/docs/tie-tag"
+icon_path: "logo.png"
+template_path: "template.tpl"
+versions:
+  - sha: PLACEHOLDER
+    changeNotes: Initial release.
