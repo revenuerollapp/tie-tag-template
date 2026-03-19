@@ -1,8 +1,4 @@
 
-                                 Apache License
-                           Version 2.0, January 2004
-                        http://www.apache.org/licenses/
-
    TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 
    1. Definitions.
@@ -33,10 +29,10 @@
       not limited to compiled object code, generated documentation,
       and conversions to other media types.
 
-      "Work" shall mean the work of authorship, whether in Source or
-      Object form, made available under the License, as indicated by a
-      copyright notice that is included in or attached to the work
-      (an example is provided in the Appendix below).
+      "Work" shall mean the Tie Lite (Zapier) Google Tag Manager Tag
+      Template, including the template definition file (.tpl), metadata,
+      sandboxed JavaScript code, parameter definitions, and any associated
+      documentation or configuration files made available under this License.
 
       "Derivative Works" shall mean any work, whether in Source or Object
       form, that is based on (or derived from) the Work and for which the
@@ -138,6 +134,7 @@
 
    6. Trademarks. This License does not grant permission to use the trade
       names, trademarks, service marks, or product names of the Licensor,
+      including but not limited to "Tie Lite", "Tie Tag", or "Net Impression",
       except as required for reasonable and customary use in describing the
       origin of the Work and reproducing the content of the NOTICE file.
 
@@ -147,9 +144,15 @@
       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
       implied, including, without limitation, any warranties or conditions
       of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-      PARTICULAR PURPOSE. You are solely responsible for determining the
-      appropriateness of using or redistributing the Work and assume any
-      risks associated with Your exercise of permissions under this License.
+      PARTICULAR PURPOSE. This disclaimer applies specifically to the
+      tag template's integration with Google Tag Manager and Zapier,
+      including but not limited to the accuracy of event data transmitted
+      (pageview, view_product, add_to_cart, purchase), webhook delivery,
+      and compatibility with future versions of the Google Tag Manager
+      platform or Zapier API. You are solely responsible for determining
+      the appropriateness of using or redistributing the Work and assume
+      any risks associated with Your exercise of permissions under this
+      License.
 
    8. Limitation of Liability. In no event and under no legal theory,
       whether in tort (including negligence), contract, or otherwise,
@@ -158,10 +161,11 @@
       liable to You for damages, including any direct, indirect, special,
       incidental, or consequential damages of any character arising as a
       result of this License or out of the use or inability to use the
-      Work (including but not limited to damages for loss of goodwill,
-      work stoppage, computer failure or malfunction, or any and all
-      other commercial damages or losses), even if such Contributor
-      has been advised of the possibility of such damages.
+      Work (including but not limited to loss of tracking data, missed
+      events, incorrect ecommerce attribution, damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all other
+      commercial damages or losses), even if such Contributor has been
+      advised of the possibility of such damages.
 
    9. Accepting Warranty or Additional Liability. While redistributing
       the Work or Derivative Works thereof, You may choose to offer,
@@ -175,28 +179,3 @@
       of your accepting any such warranty or additional liability.
 
    END OF TERMS AND CONDITIONS
-
-   APPENDIX: How to apply the Apache License to your work.
-
-      To apply the Apache License to your work, attach the following
-      boilerplate notice, with the fields enclosed by brackets "[]"
-      replaced with your own identifying information. (Don't include
-      the brackets!)  The text should be enclosed in the appropriate
-      comment syntax for the file format. We also recommend that a
-      file or class name and description of purpose be included on the
-      same "printed page" as the copyright notice for easier
-      identification within third-party archives.
-
-   Copyright 2024 Net Impression
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
