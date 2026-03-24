@@ -3,5 +3,5 @@ documentation: "https://www.revenueroll.com/docs/tie-tag"
 icon_path: "logo.png"
 template_path: "template.tpl"
 versions:
-  - sha: "21e2df5206ba81d9d059b6a7e46365179a985d9a"
+  - sha: "1b41b5845dfffd2e7bf506670b43ff1fc5a2789a"
     changeNotes: "Initial release."
