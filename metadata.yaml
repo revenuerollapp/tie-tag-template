@@ -3,5 +3,5 @@ documentation: "https://www.revenueroll.com/docs/tie-tag"
 icon_path: "logo.png"
 template_path: "template.tpl"
 versions:
-  - sha: PLACEHOLDER
-    changeNotes: Initial release.
+  - sha: "21e2df5206ba81d9d059b6a7e46365179a985d9a"
+    changeNotes: "Initial release."
