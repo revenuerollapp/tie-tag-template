@@ -3,5 +3,5 @@ documentation: "https://help.meettie.com/en/collections/19703366-install-the-tie
 icon_path: "logo.png"
 template_path: "template.tpl"
 versions:
-  - sha: "5c9fa225c82320725ff723b712261d6cf61d3d2b"
+  - sha: "959a9ae9c814c0f4548294cde9854ad7db6e2dda"
     changeNotes: "Initial release."
