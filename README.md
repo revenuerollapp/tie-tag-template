@@ -1,8 +1,8 @@
-# Tie (Revenue Roll) – GTM Custom Template
+# Tie – GTM Custom Template
 
 ## Overview
 
-The **Tie GTM Custom Template** enables sending ecommerce and page event data from Google Tag Manager (GTM) to the **Revenue Roll (Tie)** platform.
+The **Tie GTM Custom Template** enables sending ecommerce and page event data from Google Tag Manager (GTM) to the **Tie** platform ([meettie.com](https://meettie.com)).
 
 The template listens to standard `dataLayer` events and forwards structured event data to the Tie Events API for analytics and attribution.
 
@@ -35,6 +35,7 @@ Supports standard ecommerce tracking:
 The template:
 
 * Sets a required API key on the `window` object
+* Optionally sets the customer email (trimmed and lowercased) and IP address on the `window` object
 * Loads the Tie client script from a secure external endpoint
 
 The client script:
@@ -51,7 +52,14 @@ The client script:
 
 | Field   | Description                                 |
 | ------- | ------------------------------------------- |
-| API Key | Your Tie API key (provided by Revenue Roll) |
+| API Key | Your Tie API key (provided by Tie) |
+
+### Optional Fields
+
+| Field      | Description                                                        |
+| ---------- | ------------------------------------------------------------------ |
+| Email      | A variable holding the customer email, for better identity matching |
+| IP address | A variable holding the customer IP address (advanced use only)     |
 
 ---
 
@@ -144,8 +152,13 @@ https://api.revenueroll.com/events
 
 ### APIs Used
 
-* `injectScript` to load external JavaScript
-* `fetch` to send event data
+The template itself uses only sandboxed GTM APIs:
+
+* `injectScript` to load the Tie client script
+* `setInWindow` to set `tie_api_key`, `tie_email` and `tie_ip_address`
+* `logToConsole` (debug mode only)
+
+The loaded client script sends event data to the API endpoint above with `fetch`.
 
 No other external resources are accessed.
 
@@ -204,13 +217,15 @@ window.dataLayer = window.dataLayer || [];
 
 ## Support
 
-For support, contact **Revenue Roll**.
+Installation guides: [help.meettie.com – Install the Tie Pixel](https://help.meettie.com/en/collections/19703366-install-the-tie-pixel)
+
+For support, contact **Tie** through [help.meettie.com](https://help.meettie.com).
 
 ---
 
 ## Notes for Reviewers
 
-* Uses only GTM-approved APIs (`injectScript`, `setInWindow`)
+* Uses only GTM-approved APIs (`injectScript`, `setInWindow`, `logToConsole`)
 * No inline JavaScript injection
 * No dynamic code evaluation (`eval`, `Function`, etc.)
 * No access to restricted browser APIs

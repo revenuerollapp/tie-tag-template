@@ -16,7 +16,7 @@ ___INFO___
   "displayName": "Tie",
   "brand": {
     "id": "Tie",
-    "displayName": "",
+    "displayName": "Tie",
     "thumbnail": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAMAAABrrFhUAAAAP1BMVEUeANf/+uuOfeHHu+aqnOPj2+lyXd9yXt86H9ksENjx6upWPtzVy+ecjeK5q+WAbeDVy+hkTt1WP9xILtudjeJLq7+kAAADRElEQVR42uzcyY6rMBBA0SoPgE3I1P3/3/oWbxF1JDsp4kQx3LOOEbkygxBGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgpaJntAAAIQYCsBFl/0u4sAXos8AQhAAAIQgAAEIAABCEAAAhCAAAQgAAEIQIDtBTjsPYCuCjAPZdKVoRpg+6a47wDpoHsOkFzWfQVY4h+qurMAQf8gAAHqoltFHkg/48k94XJN7QN8gtRcndfnnZfrpgKkk1erOE6bCTBkXSO6bQSYvK4V5w0EOGV9ges+gNPXHFPfAYK+6px6DuD0deeOAzhtIXQb4KptnDoNkKK2kac+A/xqK77LAJO2M/cYIGg7vsMAk7Y09xdg0JaW/gIctKWcegswaVtzbwEu+kC8o3VLbwEWrYlDkjtpqDY49hbAa0VI5t2MvQU4aFmUglq13gJELZulYNaySVYy124TIGtRlIJytg4DaNnRPlW3FSB8fYDzUOR3EcBLUSAAAV4O4Mciv4sANQQgAAEIQAACEIAABCAAAQhAgK0GOLs10nYCBPkKBNCiuPcAOa0KMG8mgI6rArjtBIhpTYA8bSaAnqcVATROmwmgcUz2AJrd9FqAeSxK7QM8EP9YCgFKo9YFOH7HnWBlr4O+LkrRYRcBdJaCST8YILw3wKrl+f6TAdyqAM4WoL4x0+vl0tqwKsBJn3So5xnlXrpWh2RpbVoV4PL077XK/KKkl+bimgBJn3TStoI0t6hFMGabta1RmpttAYzZJGtTk7SXTQGM2WTRlg7yBs4UwJhNZm1plDdI2RLAmK3ti4hxkndwlgDGbG3XzCzyHtEQwJhN6lPgKyaA6UIQjAtCH2z9C84AtjtbDcZs5UumnZf3CYYApoOg9sWybzkATPsYjNmK36yz+xG79gWCcVGgFAt8zwngv3R8LoBxkDQqkEd5O2cP8HiQtCkQf+QD5mgPIEN90G2yLLqen+QjkrMHkCloxV3fr53+t3+TrQHqCQqzxSC7JJ+UBl8NUOgWawFuLiGrib8k+bg0u+MhGx9J/QzBx3KAm9vG63I8LpckAAAAAAAAAAAAAAAAAAAAAAAAwL/24EAAAAAAQJC/9SBXAAAAAIwEa75EOaWhoiYAAAAASUVORK5CYII\u003d"
   },
   "description": "Tracking Template to Enrich Marketing",
@@ -294,7 +294,39 @@ ___WEB_PERMISSIONS___
 
 ___TESTS___
 
-scenarios: []
+scenarios:
+- name: Fails without an API key
+  code: |-
+    mock('injectScript', function() { fail('injectScript should not be called'); });
+    runCode({});
+    assertApi('gtmOnFailure').wasCalled();
+    assertApi('gtmOnSuccess').wasNotCalled();
+    assertApi('setInWindow').wasNotCalled();
+- name: Sets the API key and loads the Tie script
+  code: |-
+    mock('injectScript', function(url, onSuccess, onFailure, cacheToken) {
+      assertThat(url).isEqualTo('https://tie-assets.web.app/v1.js');
+      assertThat(cacheToken).isEqualTo('tie-v1');
+      onSuccess();
+    });
+    runCode({apiKey: 'test-key'});
+    assertApi('setInWindow').wasCalledWith('tie_api_key', 'test-key', true);
+    assertApi('setInWindow').wasNotCalledWith('tie_email', '', true);
+    assertApi('gtmOnSuccess').wasCalled();
+    assertApi('gtmOnFailure').wasNotCalled();
+- name: Trims and lowercases the email and sets the IP address
+  code: |-
+    mock('injectScript', function(url, onSuccess) { onSuccess(); });
+    runCode({apiKey: 'test-key', email: '  Shopper@Example.COM ', ip_address: '203.0.113.7'});
+    assertApi('setInWindow').wasCalledWith('tie_email', 'shopper@example.com', true);
+    assertApi('setInWindow').wasCalledWith('tie_ip_address', '203.0.113.7', true);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Fails when the Tie script cannot load
+  code: |-
+    mock('injectScript', function(url, onSuccess, onFailure) { onFailure(); });
+    runCode({apiKey: 'test-key'});
+    assertApi('gtmOnFailure').wasCalled();
+    assertApi('gtmOnSuccess').wasNotCalled();
 
 
 ___NOTES___
