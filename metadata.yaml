@@ -1,7 +1,7 @@
-homepage: "https://www.revenueroll.com"
-documentation: "https://www.revenueroll.com/docs/tie-tag"
+homepage: "https://meettie.com"
+documentation: "https://help.meettie.com/en/collections/19703366-install-the-tie-pixel"
 icon_path: "logo.png"
 template_path: "template.tpl"
 versions:
-  - sha: "42c89a61ebafe11442a002fa1c191d5eaeb26237"
+  - sha: "5c9fa225c82320725ff723b712261d6cf61d3d2b"
     changeNotes: "Initial release."
